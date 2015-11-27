@@ -19,17 +19,17 @@ interface Promise
     /**
      * Pending state, promise has not been fulfilled or rejected.
      */
-    const PENDING = 'pending';
+    const STATE_PENDING = 'pending';
 
     /**
      * Fulfilled state, promise has been fulfilled with a ResponseInterface object.
      */
-    const FULFILLED = 'fulfilled';
+    const STATE_FULFILLED = 'fulfilled';
 
     /**
      * Rejected state, promise has been rejected with an Exception object.
      */
-    const REJECTED  = 'rejected';
+    const STATE_REJECTED  = 'rejected';
 
     /**
      * Adds behavior for when the promise is resolved or rejected (response will be available, or error happens).
@@ -47,7 +47,7 @@ interface Promise
     public function then(callable $onFulfilled = null, callable $onRejected = null);
 
     /**
-     * Returns the state of the promise, one of PENDING, FULFILLED or REJECTED.
+     * Returns the state of the promise, one of 'pending', 'fulfilled' or 'rejected'.
      *
      * @return string
      */
