@@ -32,29 +32,29 @@ interface Promise
     const REJECTED  = "rejected";
 
     /**
-     * Add behavior for when the promise is resolved or rejected (response will be available, or error happens).
+     * Adds behavior for when the promise is resolved or rejected (response will be available, or error happens).
      *
      * If you do not care about one of the cases, you can set the corresponding callable to null
      * The callback will be called when the response or exception arrived and never more than once.
      *
+     * You must always return the Response or throw an Exception.
+     *
      * @param callable $onFulfilled Called when a response will be available.
      * @param callable $onRejected  Called when an error happens.
      *
-     * You must always return the Response in the interface or throw an Exception.
-     *
-     * @return Promise Always returns a new promise which is resolved with value of the executed callback (onFulfilled / onRejected).
+     * @return Promise A new resolved promise with value of the executed callback (onFulfilled / onRejected).
      */
     public function then(callable $onFulfilled = null, callable $onRejected = null);
 
     /**
-     * Get the state of the promise, one of PENDING, FULFILLED or REJECTED
+     * Returns the state of the promise, one of PENDING, FULFILLED or REJECTED.
      *
-     * @return int
+     * @return string
      */
     public function getState();
 
     /**
-     * Return the value of the promise (fulfilled).
+     * Returns the value of the promise (fulfilled).
      *
      * @return ResponseInterface Response Object only when the Promise is fulfilled.
      *
@@ -63,7 +63,7 @@ interface Promise
     public function getResponse();
 
     /**
-     * Get the reason why the promise was rejected..
+     * Returns the reason why the promise was rejected.
      *
      * If the exception is an instance of Http\Client\Exception\HttpException it will contain
      * the response object with the status code and the http reason.
