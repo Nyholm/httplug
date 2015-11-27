@@ -19,17 +19,17 @@ interface Promise
     /**
      * Pending state, promise has not been fulfilled or rejected.
      */
-    const PENDING   = "pending";
+    const PENDING = 'pending';
 
     /**
      * Fulfilled state, promise has been fulfilled with a ResponseInterface object.
      */
-    const FULFILLED = "fulfilled";
+    const FULFILLED = 'fulfilled';
 
     /**
      * Rejected state, promise has been rejected with an Exception object.
      */
-    const REJECTED  = "rejected";
+    const REJECTED  = 'rejected';
 
     /**
      * Adds behavior for when the promise is resolved or rejected (response will be available, or error happens).
@@ -54,30 +54,16 @@ interface Promise
     public function getState();
 
     /**
-     * Returns the value of the promise (fulfilled).
-     *
-     * @return ResponseInterface Response Object only when the Promise is fulfilled.
-     *
-     * @throws \LogicException When the promise is not fulfilled.
-     */
-    public function getResponse();
-
-    /**
-     * Returns the reason why the promise was rejected.
-     *
-     * If the exception is an instance of Http\Client\Exception\HttpException it will contain
-     * the response object with the status code and the http reason.
-     *
-     * @return Exception Exception Object only when the Promise is rejected.
-     *
-     * @throws \LogicException When the promise is not rejected.
-     */
-    public function getException();
-
-    /**
      * Wait for the promise to be fulfilled or rejected.
      *
      * When this method returns, the request has been resolved and the appropriate callable has terminated.
+     *
+     * Pass $unwrap as true to unwrap the result of the promise, either
+     * returning the resolved value or throwing the rejected exception.
+     *
+     * @param bool $unwrap
+     *
+     * @return mixed
      */
-    public function wait();
+    public function wait($unwrap = true);
 }
